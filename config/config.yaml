@@ -21,9 +21,9 @@ oauth2:
   revokeUrl: "https://accounts.google.com/o/oauth2/revoke"
 
 state:
-  secret:"xxxxx"
+  secret: "xxxxx"
   expiresAt: 120 # Seconds
-  issuer : "isekaishop"
+  issuer: "isekaishop"
 
 database:
   host: localhost

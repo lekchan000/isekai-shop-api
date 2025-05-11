@@ -25,9 +25,9 @@ type (
 	}
 
 	OAuth2 struct {
-		PlayerRedirectURL string   `mapstructure:"playerRedirectUrl" Validate:"required"`
+		PlayerRedirectUrl string   `mapstructure:"playerRedirectUrl" Validate:"required"`
 		AdminRedirectUrl  string   `mapstructures:"adminRedirectUrl" Validate:"required"`
-		ClientId          string   `mapstructure:"clientId" Validate:"required"`
+		ClientID          string   `mapstructure:"clientId" Validate:"required"`
 		ClientSecret      string   `mapstructure:"clientSecret" Validate:"required"`
 		EndPoints         endpoint `mapstructure:"endpoints" Validate:"required"`
 		Scopes            []string `mapstructure:"scopes" Validate:"required"`
@@ -36,8 +36,8 @@ type (
 	}
 
 	endpoint struct {
-		AuthURL       string `mapstructure:"authUrl" Validate:"required"`
-		TokenURL      string `mapstructure:"tokenUrl" Validate:"required"`
+		AuthUrl       string `mapstructure:"authUrl" Validate:"required"`
+		TokenUrl      string `mapstructure:"tokenUrl" Validate:"required"`
 		DeviceAuthUrl string `mapstructure:"deviceAuthUrl" Validate:"required"`
 	}
 

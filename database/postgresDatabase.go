@@ -37,7 +37,7 @@ func NewPostgresDatabase(conf *config.Database) Database {
 			panic(err)
 		}
 
-		log.Panicf("Connected to Database %s", conf.DBName)
+		log.Printf("Connected to Database %s", conf.DBName)
 
 		postgresDatabaseInstance = &postgresDatabase{conn}
 	})

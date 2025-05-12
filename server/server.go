@@ -1,9 +1,13 @@
 package server
 
 import (
+	"context"
 	"fmt"
 	"net/http"
+	"os"
+	"os/signal"
 	"sync"
+	"syscall"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
@@ -40,6 +44,10 @@ func (s *echoServer) Start() {
 
 	s.app.GET("/v1/health", s.healthCheck)
 
+	quitCh := make(chan os.Signal, 1)
+	signal.Notify(quitCh, syscall.SIGINT, syscall.SIGTERM)
+	go s.gracefulShutdown(quitCh)
+
 	s.httpListening()
 }
 
@@ -50,6 +58,18 @@ func (s *echoServer) httpListening() {
 		s.app.Logger.Fatalf("Error %s", err.Error())
 	}
 
+}
+
+func (s *echoServer) gracefulShutdown(quitCh chan os.Signal) {
+
+	<-quitCh
+	s.app.Logger.Info("Shutting down server...")
+
+	ctx := context.Background()
+
+	if err := s.app.Shutdown(ctx); err != nil {
+		s.app.Logger.Fatalf("Error %s", err.Error())
+	}
 }
 
 func (s *echoServer) healthCheck(c echo.Context) error {

@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/lekchan000/isekai-shop-api/config"
 	"github.com/lekchan000/isekai-shop-api/database"
 	"github.com/lekchan000/isekai-shop-api/entities"
@@ -12,14 +10,20 @@ func main() {
 	conf := config.ConfigGetting()
 	db := database.NewPostgresDatabase(conf.Database)
 
-	// Run migrations
+	tx := db.ConnectionGetting().Begin()
+
 	playerMigration(db)
 	adminMigration(db)
 	itemMigration(db)
 	playerCoinMigration(db)
 	inventoryMigration(db)
 	purchaseHistoryMigration(db)
-	fmt.Println("Migrations successfully.")
+
+	tx.Commit()
+	if tx.Error != nil {
+		tx.Rollback()
+		panic(tx.Error)
+	}
 }
 
 func playerMigration(db database.Database) {

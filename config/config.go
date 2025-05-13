@@ -18,10 +18,10 @@ type (
 	}
 
 	Server struct {
-		Port           int           `mapstructure:"port" Validate:"required"`
-		AllowedOrigins []string      `mapstructure:"allowOrigins" Validate:"required"`
-		BodyLimit      string        `mapstructure:"bodyLimit" Validate:"required"`
-		TimeOut        time.Duration `mapstructure:"timeout" Validate:"required"`
+		Port         int           `mapstructure:"port" Validate:"required"`
+		AllowOrigins []string      `mapstructure:"allowOrigins" Validate:"required"`
+		BodyLimit    string        `mapstructure:"bodyLimit" Validate:"required"`
+		TimeOut      time.Duration `mapstructure:"timeout" Validate:"required"`
 	}
 
 	OAuth2 struct {

@@ -1,3 +1,3 @@
 package repository
 
-type itemManagingRepository interface{}
+type ItemManagingRepository interface{}

@@ -28,6 +28,7 @@ func (s *itemShopServiceImpl) Listing(itemFilter *_itemShopModel.ItemFilter) (*_
 	size := itemFilter.Size
 	page := itemFilter.Page
 	totalPage := s.totalPageCalculation(itemCounting, size)
+
 	result := s.toItemResultResponse(itemList, page, totalPage)
 
 	return result, nil

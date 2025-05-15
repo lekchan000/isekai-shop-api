@@ -44,7 +44,7 @@ func (r *itemShopRepositoryImpl) Listing(itemFilter *_itemShopModel.ItemFilter) 
 
 func (r *itemShopRepositoryImpl) Counting(itemFilter *_itemShopModel.ItemFilter) (int64, error) {
 
-	query := r.db.Model(&entities.Item{}).Where("is_archive = ?", false) // SELECT * FROM items
+	query := r.db.Model(&entities.Item{}).Where("is_archive = ?", false)
 
 	if itemFilter.Name != "" {
 		query = query.Where("name ilike ?", "%"+itemFilter.Name+"%")

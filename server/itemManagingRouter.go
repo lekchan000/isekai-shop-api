@@ -7,12 +7,11 @@ import (
 )
 
 func (s *echoServer) initItemManagingRouter() {
-	router := s.app.Group("v1/item-mannaging")
+	router := s.app.Group("v1/item-managing")
 
 	itemManagingRepository := _itemManagingRepository.NewItemManagingRepositoryImpl(s.db, s.app.Logger)
 	itemManagingService := _itemManagingService.NewItemManagingServiceImpl(itemManagingRepository)
 	itemManagingController := _itemManagingController.NewItemManagingControllerImpl(itemManagingService)
 
-	_ = itemManagingController
-	_ = router
+	router.POST("", itemManagingController.Creating)
 }

@@ -1,3 +1,7 @@
 package repository
 
-type ItemManagingRepository interface{}
+import "github.com/lekchan000/isekai-shop-api/entities"
+
+type ItemManagingRepository interface {
+	Creating(itemEntity *entities.Item) (*entities.Item, error)
+}

@@ -9,7 +9,7 @@ type (
 		Price       uint   `json:"price" validate:"required"`
 	}
 
-	ItemEditReq struct {
+	ItemEditingReq struct {
 		AdminID     string
 		Name        string `json:"name" validate:"omitempty,max=64"`
 		Description string `json:"description" validate:"omitempty,max=128"`

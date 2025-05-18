@@ -4,7 +4,7 @@ import (
 	_itemManagingController "github.com/lekchan000/isekai-shop-api/pkg/itemManaging/controller"
 	_itemManagingRepository "github.com/lekchan000/isekai-shop-api/pkg/itemManaging/repository"
 	_itemManagingService "github.com/lekchan000/isekai-shop-api/pkg/itemManaging/service"
-	_itemShopRepository "github.com/lekchan000/isekai-shop-api/pkg/itemshop/repository"
+	_itemShopRepository "github.com/lekchan000/isekai-shop-api/pkg/itemShop/repository"
 )
 
 func (s *echoServer) initItemManagingRouter() {
@@ -16,4 +16,5 @@ func (s *echoServer) initItemManagingRouter() {
 	itemManagingController := _itemManagingController.NewItemManagingControllerImpl(itemManagingService)
 
 	router.POST("", itemManagingController.Creating)
+	router.PATCH("/:itemID", itemManagingController.Editing)
 }

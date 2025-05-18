@@ -5,7 +5,7 @@ import (
 	_itemManagingModel "github.com/lekchan000/isekai-shop-api/pkg/itemManaging/model"
 	_itemManagingRepository "github.com/lekchan000/isekai-shop-api/pkg/itemManaging/repository"
 	_itemShopModel "github.com/lekchan000/isekai-shop-api/pkg/itemShop/model"
-	_itemShopRepository "github.com/lekchan000/isekai-shop-api/pkg/itemshop/repository"
+	_itemShopRepository "github.com/lekchan000/isekai-shop-api/pkg/itemShop/repository"
 )
 
 type itemManagingServiceImpl struct {
@@ -45,7 +45,10 @@ func (s *itemManagingServiceImpl) Editing(itemID uint64, itemEditingReq *_itemMa
 		return nil, err
 	}
 
-	itemEntityResult, err = s.itemShopRepository.Listing()
+	itemEntityResult, err := s.itemShopRepository.FindByID(itemID)
+	if err != nil {
+		return nil, err
+	}
 
 	return itemEntityResult.ToItemModel(), nil
 }

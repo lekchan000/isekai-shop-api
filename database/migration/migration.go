@@ -10,7 +10,7 @@ func main() {
 	conf := config.ConfigGetting()
 	db := database.NewPostgresDatabase(conf.Database)
 
-	tx := db.ConnectionGetting().Begin()
+	tx := db.Connect().Begin()
 
 	playerMigration(db)
 	adminMigration(db)
@@ -27,25 +27,25 @@ func main() {
 }
 
 func playerMigration(db database.Database) {
-	db.ConnectionGetting().Migrator().CreateTable(&entities.Player{})
+	db.Connect().Migrator().CreateTable(&entities.Player{})
 }
 
 func adminMigration(db database.Database) {
-	db.ConnectionGetting().Migrator().CreateTable(&entities.Admin{})
+	db.Connect().Migrator().CreateTable(&entities.Admin{})
 }
 
 func itemMigration(db database.Database) {
-	db.ConnectionGetting().Migrator().CreateTable(&entities.Item{})
+	db.Connect().Migrator().CreateTable(&entities.Item{})
 }
 
 func playerCoinMigration(db database.Database) {
-	db.ConnectionGetting().Migrator().CreateTable(&entities.PlayerCoin{})
+	db.Connect().Migrator().CreateTable(&entities.PlayerCoin{})
 }
 
 func inventoryMigration(db database.Database) {
-	db.ConnectionGetting().Migrator().CreateTable(&entities.Inventory{})
+	db.Connect().Migrator().CreateTable(&entities.Inventory{})
 }
 
 func purchaseHistoryMigration(db database.Database) {
-	db.ConnectionGetting().Migrator().CreateTable(&entities.PurchaseHistory{})
+	db.Connect().Migrator().CreateTable(&entities.PurchaseHistory{})
 }

@@ -9,7 +9,7 @@ import (
 func main() {
 	conf := config.ConfigGetting()
 	db := database.NewPostgresDatabase(conf.Database)
-	server := server.NewEchoServer(conf, db.ConnectionGetting())
+	server := server.NewEchoServer(conf, db)
 
 	server.Start()
 }
